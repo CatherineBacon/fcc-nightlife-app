@@ -1,9 +1,8 @@
 'use strict'
 
 var path = require('path');
-require('dotenv').config();
-var Yelp = require('yelp');
 
+var Yelp = require('yelp');
 
 
 var yelp = new Yelp({
@@ -18,19 +17,23 @@ module.exports = function (app) {
 	app.set('views', path.join(__dirname, '../views'));
 	app.set('view engine', 'jade');
 
-	app.get('/', function(req, res) {
+	app.route('/')
+		.get(function(req, res) {
 		res.render('index');
 		})
-		.post('/', function(req, res) {
+		.post(function(req, res) {
 			var location = req.body.location;
 			res.redirect(`/bars/${location}`);
 		});
 
-	app.get('/bars/:place', function(req, res) {
+	app.route('/bars/:place')
+		.get(function(req, res) {
 		// api call
 		yelp.search({ term: 'bar', location: req.params.place })
 			.then(function (data) {
-  				res.send(data);
+				console.log(data);
+				var bars = data.businesses;
+  				res.render('bars', {bars: bars});
   			})
 			.catch(function (err) {
   				console.error(err);

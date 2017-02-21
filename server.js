@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+require('dotenv').config();
 var routes = require('./app/routes/index.js');
 var bodyParser = require('body-parser');
 var path = require('path');
