@@ -12,6 +12,7 @@ var yelp = new Yelp({
   token_secret: process.env.TOKEN_SECRET,
 });
 
+var going = {};
 
 module.exports = function (app) {
 	app.set('views', path.join(__dirname, '../views'));
@@ -28,23 +29,39 @@ module.exports = function (app) {
 
 	app.route('/bars/:place')
 		.get(function(req, res) {
-		// api call
-		yelp.search({ term: 'bar', location: req.params.place })
-			.then(function (data) {
-				console.log(data);
-				var bars = data.businesses;
-  				res.render('bars', {bars: bars});
-  			})
-			.catch(function (err) {
-  				console.error(err);
-  				res.sendStatus(500);
-			});
-	});
+			var place = req.params.place;
+			// api call
+			yelp.search({ term: 'bar', location: place })
+				.then(function (data) {
+					console.log(data);
+					var bars = data.businesses.map(function(bar) {
+						if (bar.id in going) {
+							bar.going = going[bar.id];
+						}
+						return bar;
+					});
+	  				res.render('bars', {
+	  					bars: bars,
+	  					place: place,
+	  				});
+	  			})
+				.catch(function (err) {
+	  				console.error(err);
+	  				res.sendStatus(500);
+				});
+		});
 
 
-	app.route('/api/:loc')
+	app.route('/api/going/:place/:barId')
 		.get(function (req, res) {
-
+			var barId = req.params.barId,
+				place = req.params.place;
+			if (barId in going) {
+				going[barId]++;
+			} else {
+				going[barId] = 1;
+			}
+			res.redirect(`/bars/${place}`);
 		});
 
 	app.route('/login')

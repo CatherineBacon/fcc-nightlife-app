@@ -1,15 +1,12 @@
-doctype html
+extends layout.jade
 
-html(lang='en')
-	head
-		title Nightlife coordinator
-		link(rel="stylesheet" href="/public/css/main.css" type="text/css")
-
-	body
-		h1 Bar list
-		ul
-			each bar in bars
-				li
-					a(href=bar.url)= bar.name
-					img(src=bar.image_url)
-		
+block content
+	h1 Bar list
+	ul
+		each bar in bars
+			li
+				a(href=bar.url)= bar.name
+				img(src=bar.image_url)
+				if bar.going
+					p= bar.going
+				a(href='/api/going/' + place + '/' + bar.id) going!
