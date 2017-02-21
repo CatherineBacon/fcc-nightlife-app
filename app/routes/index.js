@@ -1,11 +1,10 @@
 'use strict'
 
 var path = require('path');
-
 var Yelp = require('yelp');
 
 var Vote = require('../models/vote.js');
-
+var homeController = require('../controllers/home-controller.js');
 
 var yelp = new Yelp({
   consumer_key: process.env.CONSUMER_KEY,
@@ -19,13 +18,8 @@ module.exports = function (app) {
 	app.set('view engine', 'jade');
 
 	app.route('/')
-		.get(function(req, res) {
-		res.render('index');
-		})
-		.post(function(req, res) {
-			var location = req.body.location;
-			res.redirect(`/bars/${location}`);
-		});
+		.get(homeController.home)
+		.post(homeController.search);
 
 	app.route('/bars/:place')
 		.get(function(req, res) {
