@@ -20,8 +20,11 @@
   "homepage": "https://github.com/CatherineBacon/fcc-nightlife-app#readme",
   "dependencies": {
     "body-parser": "^1.16.1",
+    "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "jade": "^1.11.0",
-    "path": "^0.12.7"
+    "oauth": "^0.9.15",
+    "path": "^0.12.7",
+    "yelp": "^1.0.2"
   }
 }
