@@ -2,9 +2,14 @@
 
 var express = require('express');
 var routes = require('./app/routes/index.js');
+var bodyParser = require('body-parser');
+
 var app = express();
 
+app.use(bodyParser.urlencoded({ extend: true }));
+
 var path = require('path');
+
 var port = process.env.PORT || 8080;
 
 

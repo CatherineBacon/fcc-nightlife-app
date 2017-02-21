@@ -1,4 +1,4 @@
-# fcc-nightlige-app
+# fcc-nightlife-app
 
 
 ## TO DO 
