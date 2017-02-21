@@ -4,6 +4,8 @@ var path = require('path');
 
 var Yelp = require('yelp');
 
+var Vote = require('../models/vote.js');
+
 
 var yelp = new Yelp({
   consumer_key: process.env.CONSUMER_KEY,
@@ -11,8 +13,6 @@ var yelp = new Yelp({
   token: process.env.TOKEN,
   token_secret: process.env.TOKEN_SECRET,
 });
-
-var going = {};
 
 module.exports = function (app) {
 	app.set('views', path.join(__dirname, '../views'));
@@ -34,16 +34,23 @@ module.exports = function (app) {
 			yelp.search({ term: 'bar', location: place })
 				.then(function (data) {
 					console.log(data);
-					var bars = data.businesses.map(function(bar) {
-						if (bar.id in going) {
-							bar.going = going[bar.id];
-						}
-						return bar;
+					var bars = data.businesses;
+					var barIds = bars.map(function(bar) {
+						return bar.id;
 					});
-	  				res.render('bars', {
-	  					bars: bars,
-	  					place: place,
-	  				});
+					Vote.find({'bar': {$in: barIds} }, function(err, votes) {
+						if (err) console.log(err)
+						bars = bars.map(function(bar) {
+							bar.going = votes.filter(function(v){
+								return v.bar==bar.id;
+							}).length;
+							return bar;
+						})
+						res.render('bars', {
+	  						bars: bars,
+	  						place: place,
+	  					});
+					});
 	  			})
 				.catch(function (err) {
 	  				console.error(err);
@@ -56,12 +63,11 @@ module.exports = function (app) {
 		.get(function (req, res) {
 			var barId = req.params.barId,
 				place = req.params.place;
-			if (barId in going) {
-				going[barId]++;
-			} else {
-				going[barId] = 1;
-			}
-			res.redirect(`/bars/${place}`);
+			var vote = new Vote({ bar: barId, user: 'x', date: new Date() });
+			vote.save(function(err, vote) {
+				if (err) console.log(err);
+				res.redirect(`/bars/${place}`);
+			});
 		});
 
 	app.route('/login')
