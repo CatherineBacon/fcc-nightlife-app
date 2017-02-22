@@ -30,11 +30,11 @@ module.exports = {
 							return v.bar==bar.id ;
 						}).length;
 						bar.voted = votes.filter(function(v) {
-							return v.user=='x'; /* WILL NEED UPDATING WHEN ADD USER AUTH */
-						}).length;
+
+							return v.user=='x' && v.bar==bar.id; /* WILL NEED UPDATING WHEN ADD USER AUTH */
+						}).length > 0;
 						return bar;
 					});
-
 					res.render('bars', {
 						bars: bars,
 						place: place,
