@@ -20,6 +20,9 @@ module.exports = function (app) {
 	app.route('/api/going/:place/:barId')
 		.get(voteController.vote);
 
+	app.route('/api/notgoing/:place/:barId')
+		.get(voteController.remove);
+
 	app.route('/login')
 	// login then go back to previous page  res.redirect('back');
 

@@ -22,5 +22,14 @@ module.exports = {
 				});
 			}
 		});
-	}
+	},
+
+	remove: function(req, res) {
+		var barId = req.params.barId,
+			place = req.params.place;
+		Vote.remove( { 'bar': barId, 'user': 'x' }, function(err) {
+			if (err) console.log(err);
+			res.redirect(`/bars/${place}`);
+		});
+	},
 }
