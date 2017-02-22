@@ -20,6 +20,7 @@ module.exports = {
 				var barIds = bars.map(function(bar) {
 					return bar.id;
 				});
+
 				var sixteenHours = 16 * 60 * 60 * 1000 /*16 hours in ms*/
 				var sixteenHoursAgo = new Date(new Date() - sixteenHours);
 				Vote.find({'bar': {$in: barIds}, 'date': {$gt: sixteenHoursAgo} }, function(err, votes) {
@@ -28,8 +29,12 @@ module.exports = {
 						bar.going = votes.filter(function(v) {
 							return v.bar==bar.id ;
 						}).length;
+						bar.voted = votes.filter(function(v) {
+							return v.user=='x'; /* WILL NEED UPDATING WHEN ADD USER AUTH */
+						}).length;
 						return bar;
 					});
+
 					res.render('bars', {
 						bars: bars,
 						place: place,

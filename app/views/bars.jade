@@ -7,8 +7,13 @@ block content
 			li
 				a(href=bar.url)= bar.name
 				img(src=bar.image_url)
+
 				if bar.going
 					p #{bar.going} going tonight!
 				else
 					p 0 going tonight!
-				a(href='/api/going/' + place + '/' + bar.id) going!
+
+				if bar.voted > 0
+					a(href='/api/notgoing' + place + '/' + bar.id) not going!
+				else
+					a(href='/api/going/' + place + '/' + bar.id) going!

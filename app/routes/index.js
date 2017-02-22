@@ -21,9 +21,9 @@ module.exports = function (app) {
 		.get(voteController.vote);
 
 	app.route('/login')
-	// login then go back to previous page
+	// login then go back to previous page  res.redirect('back');
 
 	app.route('/logout')
-	//logout; then go back to previous page
+	//logout; then go back to previous page  res.redirect('back');
 
 }
