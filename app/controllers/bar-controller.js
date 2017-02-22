@@ -24,7 +24,8 @@ module.exports = {
 					if (err) console.log(err);
 					bars = bars.map(function(bar) {
 						bar.going = votes.filter(function(v) {
-							return v.bar==bar.id;
+							var sixteenHours = 16 * 60 * 60 * 1000 /*16 hours in ms*/
+							return v.bar==bar.id && (new Date() - v.date) < sixteenHours ;
 						}).length;
 						return bar;
 					});

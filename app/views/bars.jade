@@ -8,5 +8,7 @@ block content
 				a(href=bar.url)= bar.name
 				img(src=bar.image_url)
 				if bar.going
-					p= bar.going
+					p #{bar.going} going tonight!
+				else
+					p 0 going tonight!
 				a(href='/api/going/' + place + '/' + bar.id) going!

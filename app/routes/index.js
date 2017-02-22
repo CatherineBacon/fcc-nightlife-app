@@ -17,7 +17,6 @@ module.exports = function (app) {
 	app.route('/bars/:place')
 		.get(barController.search);
 
-
 	app.route('/api/going/:place/:barId')
 		.get(voteController.vote);
 
