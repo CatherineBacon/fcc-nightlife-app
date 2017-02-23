@@ -18,7 +18,11 @@ require('./app/config/passport')(passport);
 mongoose.connect(process.env.MONGO_URI)
 
 app.use(bodyParser.urlencoded({ extend: true }));
-app.use(session({ secret: 'secretNightlife' }));
+app.use(session({ 
+	secret: 'secretNightlife', 
+	resave: false,
+	saveUninitialized: true,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 

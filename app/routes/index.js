@@ -33,7 +33,7 @@ module.exports = function (app, passport) {
 			failureRedirect: '/'
 		}),
 		function(req, res) {
-			res.redirect('/');
+			res.redirect('back');
 		}
 		);
 

@@ -7,8 +7,11 @@ html(lang='en')
 		link(rel="stylesheet" href="/public/css/main.css" type="text/css")
 
 	body
-		a(href='/auth/github') login 
-		a(href='/logout') logout 
+		a(href='/') home
+		if !isLoggedIn
+			a(href='/auth/github') login 
+		else
+			a(href='/logout') logout 
 
 		block content
 		
