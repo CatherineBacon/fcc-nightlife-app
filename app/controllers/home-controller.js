@@ -13,13 +13,9 @@ module.exports = {
 		var location = req.body.location;
 		if(location.trim().length==0){
 			res.redirect('/');
+			return
 		}
 		console.log(location);
-		var isLoggedIn = req.isAuthenticated();
-		var user = req.user || 'user';
-		res.redirect(`/bars/${location}`, {
-			isLoggedIn: isLoggedIn,
-			user: user,
-		});
+		res.redirect(`/bars/${location}`);
 	},
 }

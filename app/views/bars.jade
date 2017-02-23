@@ -12,8 +12,8 @@ block content
 					p #{bar.going} going tonight!
 				else
 					p 0 going tonight!
-
-				if bar.voted > 0
-					a(href='/api/notgoing/' + place + '/' + bar.id) not going!
-				else
-					a(href='/api/going/' + place + '/' + bar.id) going!
+				if isLoggedIn
+					if bar.voted > 0
+						a(href='/api/notgoing/' + place + '/' + bar.id) not going!
+					else
+						a(href='/api/going/' + place + '/' + bar.id) going!

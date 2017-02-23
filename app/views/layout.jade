@@ -12,6 +12,8 @@ html(lang='en')
 			a(href='/auth/github') login 
 		else
 			a(href='/logout') logout 
+			p logged in as #{user.username}
+			p user id #{user.id}
 
 		block content
 		

@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
 
 	app.route('/auth/github/callback')
 		.get(passport.authenticate('github', {
-			failureRedirect: '/'
+			failureRedirect: 'back'
 		}),
 		function(req, res) {
 			res.redirect('back');
