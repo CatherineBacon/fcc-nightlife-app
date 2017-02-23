@@ -2,10 +2,12 @@
 
 module.exports = {
 	home: function(req, res) {
-		res.render('index');
+		var isLoggedIn = req.isAuthenticated();
+		res.render('index', {isLoggedIn: isLoggedIn});
 	},
 	search: function(req, res) {
 		var location = req.body.location;
-		res.redirect(`/bars/${location}`);
+		var isLoggedIn = req.isAuthenticated();
+		res.redirect(`/bars/${location}`, {isLoggedIn: isLoggedIn});
 	},
 }
