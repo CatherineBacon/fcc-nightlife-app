@@ -1,19 +1,15 @@
 extends layout.jade
 
+
 block content
-	h1 Plans tonight?
-	h2 See where's popular tonight and RSVP.
-	form(method="post")
-		#container
-			input(
-				type="text" name="location"
-				placeholder="Where are you going out?"
-			)
-			button(
-				type="submit" class="btn btn-submit"
-			) GO!
-	if isLoggedIn
-		p loggedin
-		p #{user.username} #{user.id}
-	else
-		p not loggedin
+	.content-padded
+		h4 See where's popular tonight and RSVP.
+		form(method="post")
+			#container
+				input(
+					type="text" name="location"
+					placeholder="Where are you going out?"
+				)
+				button(
+					type="submit" class="btn btn-submit btn-primary btn-block"
+				) GO!

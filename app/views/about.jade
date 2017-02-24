@@ -1,24 +1,27 @@
 extends layout.jade
 
 block content
-	h1 About
-	p This site was created as part of #[a(href='https://www.freecodecamp.com') FreeCodeCamp]'s back end #[a(href='https://www.freecodecamp.com/challenges/build-a-nightlife-coordination-app') projects].
+	.content-padded
+		h4 About
+		p This site was created as part of #[a(href='https://www.freecodecamp.com') FreeCodeCamp]'s back end #[a(href='https://www.freecodecamp.com/challenges/build-a-nightlife-coordination-app') projects].
 
-	h2 Objective
-	p Build a full stack JavaScript app that is functionally similar to this: #[a(href='http://whatsgoinontonight.herokuapp.com') whatsgoinontonight] and deploy it to Heroku.
-	p Try using the #[a(href='https://www.yelp.com/developers/documentation/v2/overview') Yelp API] to find venues in the cities your users search for.
-	
-	p #[strong User stories]:
+		h5 Objective
+		p Build a full stack JavaScript app that is functionally similar to this: #[a(href='http://whatsgoinontonight.herokuapp.com') whatsgoinontonight] and deploy it to Heroku.
+		p Try using the #[a(href='https://www.yelp.com/developers/documentation/v2/overview') Yelp API] to find venues in the cities your users search for.
+		
+		h6 User stories:
 
-		ul
-			li As an unauthenticated user, I can view all bars in my area.
-			li As an authenticated user, I can add myself to a bar to indicate I am going there tonight.
-			li As an authenticated user, I can remove myself from a bar if I no longer want to go there.
-			li As an unauthenticated user, when I login I should not have to search again.
+		p As an unauthenticated user, I can view all bars in my area.
+		p As an authenticated user, I can add myself to a bar to indicate I am going there tonight.
+		p As an authenticated user, I can remove myself from a bar if I no longer want to go there.
+		p As an unauthenticated user, when I login I should not have to search again.
 
 
-	h2 Detail
-	p I set myself the challenge to complete this project without using any frontend javascript.
-	p It uses nodejs with express, mongoose, passport, jade and ratchet.
-	p 
-	p This app uses the #[a(href='https://www.yelp.com/developers/documentation/v2/overview') Yelp API].
+		h5 Detail
+		p I set myself the challenge to complete this project without using any frontend javascript.
+		p It uses nodejs with express, mongoose, passport, jade and ratchet.
+		p 
+		p This app uses the #[a(href='https://www.yelp.com/developers/documentation/v2/overview') Yelp API].
+		p
+		hr
+		p Written and coded by #[span(class='name' style='color:blue') Catherine Bacon]

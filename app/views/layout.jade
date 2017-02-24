@@ -12,28 +12,34 @@ html(lang='en')
 
 		link(href='/public/css/ratchet.css' rel='stylesheet')
 
-		block scripts
-
 
 	body
-		div(class='bar bar-standard')
-			.segmented-control
-				a(href='/' class='control-item' data-ignore="push") home
-				a(href='/about' class='control-item' data-ignore="push") about
+		if isLoggedIn
+			header(class='bar bar-nav')
+				h1.title Plans tonight #{user.username}?
+		else
+			header(class='bar bar-nav')
+				h1.title Plans tonight?
+
+		nav(class='bar bar-tab')
+				a(href='/' class='tab-item') 
+					span(class='icon icon-home')
+					span(class='tab-label') home
+				a(href='/about' class='tab-item') 
+					span(class='icon icon-info')
+					span(class='tab-label') about
 				if !isLoggedIn
-					a(href='/auth/github' class='control-item' data-ignore="push") login 
+					a(href='/auth/github' class='tab-item') 
+						span(class='icon icon-plus')
+						span(class='tab-label') login 
 				else
-					a(href='/profile' class='control-item') profile
-					a(href='/logout' class='control-item') logout 
+					a(href='/profile' class='tab-item') 
+						span(class='icon icon-person') 
+						span(class='tab-label') profile
+					a(href='/logout' class='tab-item') 
+						span(class='icon icon-close')
+						span(class='tab-label') logout 
 
-		div(class='bar bar-standard bar-header-secondary')
-			if isLoggedIn
-				h4.title Welcome #{user.username}!
-			else
-				h4.title Welcome!
-
-		div(class='bar bar-standard bar-footer')
-			p.title Written and coded by #[span(style='color: blue') Catherine Bacon]
 
 		.content
 

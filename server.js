@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/public/css', express.static(process.cwd() + '/public/css'));
-app.use('/public/font', express.static(process.cwd() + '/public/font'));
+app.use('/public/fonts', express.static(process.cwd() + '/public/fonts'));
 app.use('/public/js', express.static(process.cwd() + '/public/js'));
 
 
