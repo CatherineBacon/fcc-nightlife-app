@@ -14,7 +14,6 @@ module.exports = {
 		if(location.trim().length==0){
 			return res.redirect('/');
 		}
-		console.log(location);
 		res.redirect(`/bars/${location}`);
 	},
 }
