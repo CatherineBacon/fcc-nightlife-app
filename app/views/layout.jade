@@ -8,13 +8,13 @@ html(lang='en')
 
 	body
 		a(href='/') home
+		a(href='/about') about
 		if !isLoggedIn
 			a(href='/auth/github') login 
 		else
 			a(href='/profile') profile
 			a(href='/logout') logout 
-			p logged in as #{user.username}
-			p user id #{user.id}
+			p Welcome #{user.username}!
 
 		block content
 		

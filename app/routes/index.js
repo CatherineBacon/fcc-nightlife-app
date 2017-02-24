@@ -22,6 +22,11 @@ module.exports = function (app, passport) {
 		.get(homeController.home)
 		.post(homeController.search);
 
+	app.route('/about')
+		.get(function(req, res) {
+			res.render('about');
+		})
+
 	app.route('/bars/:place')
 		.get(barController.search);
 
