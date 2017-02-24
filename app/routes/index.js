@@ -24,7 +24,10 @@ module.exports = function (app, passport) {
 
 	app.route('/about')
 		.get(function(req, res) {
-			res.render('about');
+			res.render('about', { 
+				user: req.user, 
+				isLoggedIn: req.isAuthenticated() 
+			});
 		})
 
 	app.route('/bars/:place')

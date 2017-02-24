@@ -2,22 +2,39 @@ doctype html
 
 html(lang='en')
 	head
+		meta(charset='utf-8')
 		title Nightlife coordinator
+
+		meta(
+			name='viewport' 
+			content='initial-scale=1, maximum-scale=1'
+		)
+
+		link(href='/public/css/ratchet.css' rel='stylesheet')
+
 		block scripts
-		link(rel="stylesheet" href="/public/css/main.css" type="text/css")
+
 
 	body
-		a(href='/') home
-		a(href='/about') about
-		if !isLoggedIn
-			a(href='/auth/github') login 
-		else
-			a(href='/profile') profile
-			a(href='/logout') logout 
-			p Welcome #{user.username}!
+		div(class='bar bar-standard')
+			.segmented-control
+				a(href='/' class='control-item' data-ignore="push") home
+				a(href='/about' class='control-item' data-ignore="push") about
+				if !isLoggedIn
+					a(href='/auth/github' class='control-item' data-ignore="push") login 
+				else
+					a(href='/profile' class='control-item') profile
+					a(href='/logout' class='control-item') logout 
 
-		block content
-		
-		block foot
-			#footer
-				p Created by Catherine Bacon
+		div(class='bar bar-standard bar-header-secondary')
+			if isLoggedIn
+				h4.title Welcome #{user.username}!
+			else
+				h4.title Welcome!
+
+		div(class='bar bar-standard bar-footer')
+			p.title Written and coded by #[span(style='color: blue') Catherine Bacon]
+
+		.content
+
+			block content
