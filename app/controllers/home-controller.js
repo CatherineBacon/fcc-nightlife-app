@@ -12,8 +12,7 @@ module.exports = {
 	search: function(req, res) {
 		var location = req.body.location;
 		if(location.trim().length==0){
-			res.redirect('/');
-			return
+			return res.redirect('/');
 		}
 		console.log(location);
 		res.redirect(`/bars/${location}`);

@@ -29,7 +29,7 @@ module.exports = {
 				Vote.find({'bar': {$in: barIds}, 'date': {$gt: sixteenHoursAgo} }, function(err, votes) {
 					if (err) {
 						console.log(err);
-						res.sendStatus(500);
+						return res.sendStatus(500);
 					}
 					bars = bars.map(function(bar) {
 						bar.going = votes.filter(function(v) {

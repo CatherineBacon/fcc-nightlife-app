@@ -1,0 +1,11 @@
+extends layout.jade
+
+block content
+	h1 Profile
+	h2 Welcome #{user.username}
+
+	ul
+		each vote in votes
+			li
+				p #{vote.barname}
+				a(href='/api/notgoing/place/' + vote.bar + '/' +vote.barname) not going!

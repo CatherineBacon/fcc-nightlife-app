@@ -6,6 +6,7 @@ module.exports = {
 	vote: function(req, res) {
 		var barId = req.params.barId,
 			place = req.params.place,
+			barName = req.params.barName,
 			isLoggedIn = req.isAuthenticated(),
 			user = req.user || 'user',
 			sixteenHours = 16 * 60 * 60 * 1000, /*16 hours in ms*/
@@ -17,20 +18,20 @@ module.exports = {
 				var voted = votes.filter(function(v) {
 								return v.user==user.username && v.bar==bar.id; 
 							}).length > 0 ;
-				if (voted) res.redirect(`/bars/${place}`);
+				if (voted) res.redirect(`back`);
 				else {
-					var vote = new Vote({ bar: barId, user: user.username, date: new Date() });
+					var vote = new Vote({ bar: barId, user: user.username, date: new Date(), barname: barName });
 					vote.save(function(err, vote) {
 						if (err) {
 							console.log(err);
 							res.sendStatus(500);
 						}
-						res.redirect(`/bars/${place}`);
+						res.redirect(`back`);
 					});
 				}
 			});		
 		} else {
-			res.redirect(`/bars/${place}`);
+			res.redirect(`back`);
 		}
 	
 	},
@@ -47,10 +48,10 @@ module.exports = {
 					console.log(err);
 					res.sendStatus(500);
 				}
-				res.redirect(`/bars/${place}`);
+				res.redirect(`back`);
 			});
 		} else {
-			res.redirect(`/bars/${place}`);
+			res.redirect(`back`);
 		}
 	},
 }

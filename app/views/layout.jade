@@ -11,6 +11,7 @@ html(lang='en')
 		if !isLoggedIn
 			a(href='/auth/github') login 
 		else
+			a(href='/profile') profile
 			a(href='/logout') logout 
 			p logged in as #{user.username}
 			p user id #{user.id}
