@@ -1,19 +1,24 @@
 extends layout.jade
 
 block content
-	h1 Bar list
-	ul
-		each bar in bars
-			li
-				a(href=bar.url)= bar.name
-				img(src=bar.image_url)
+	.content-padded
+		h5 Bar list
+		ul(class='table-view')
+			each bar in bars
+				li(class='table-view-cell media')
+					a(href=bar.url)= bar.name
+					img(class='media-object pull-left' src=bar.image_url)
 
-				if bar.going
-					p #{bar.going} going tonight!
-				else
-					p 0 going tonight!
-				if isLoggedIn
-					if bar.voted > 0
-						a(href='/api/notgoing/' + place + '/' + bar.id + '/' + bar.name) not going!
+					if bar.going
+						p #{bar.going} going tonight!
 					else
-						a(href='/api/going/' + place + '/' + bar.id + '/' + bar.name) going!
+						p 0 going tonight!
+					if isLoggedIn
+						if bar.voted > 0
+							p 
+								a(href='/api/notgoing/' + place + '/' + bar.id + '/' + bar.name) remove vote
+						else
+							p 
+								a(href='/api/going/' + place + '/' + bar.id + '/' + bar.name) vote
+
+
