@@ -21,6 +21,6 @@ Try using the [Yelp API](https://www.yelp.com/developers/documentation/v2/overvi
 
 I set myself the challenge to complete this project without using any frontend javascript.
 
-It uses nodejs with express, mongoose, passport, jade and ratchet. 
+It uses nodejs with express, mongoose, passport, jade and ratchet. As I'm using ratchet, I've tried to use a mobile first approach.
 
 This app uses the [Yelp API](https://www.yelp.com/developers/documentation/v2/overview).
