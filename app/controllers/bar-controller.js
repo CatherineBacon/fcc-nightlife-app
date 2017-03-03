@@ -51,6 +51,10 @@ module.exports = {
 			})
 			.catch(function(err) {
 				console.log(err);
+				if(err) {
+					return res.send('UNAVAILABLE_FOR_LOCATION')
+					// SEND TO SITE FOR ERROR IF SEARCH FOR UNAVAILABLE LOCATION
+				}
 				res.sendStatus(500);
 			})
 	},

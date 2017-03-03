@@ -6,7 +6,7 @@ block content
 		h5 You are logged in as #{user.username}
 
 		if(votes.length>0)
-			h5 You've RSVPd!
+			h5 You've RSVPd for tonight!
 			ul(class='table-view')
 				each vote in votes
 					li 
@@ -18,4 +18,4 @@ block content
 						span #{vote.barname}
 					
 		else
-			h5 You haven't RSVPd!
+			h5 You haven't RSVPd for tonight!

@@ -8,6 +8,8 @@ block content
 				li(class='table-view-cell media')
 					a(href=bar.url)= bar.name
 					img(class='media-object pull-left' src=bar.image_url)
+					p= bar.snippet_text
+					img(src=bar.rating_img_url_small)
 
 					if bar.going
 						p #{bar.going} going tonight!
@@ -15,10 +17,14 @@ block content
 						p 0 going tonight!
 					if isLoggedIn
 						if bar.voted > 0
+							p You're going tonight! 
 							p 
-								a(href='/api/notgoing/' + place + '/' + bar.id + '/' + bar.name) remove vote
+								a(href='/api/notgoing/' + place + '/' + bar.id + '/' + bar.name) 
+									button(class='btn btn-small') No longer going
 						else
 							p 
-								a(href='/api/going/' + place + '/' + bar.id + '/' + bar.name) vote
+							p
+								a(href='/api/going/' + place + '/' + bar.id + '/' + bar.name) 
+									button(class='btn btn-small') RSVP
 
 
